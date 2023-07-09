@@ -3,6 +3,8 @@ module Admin
     before_action :basic_auth
 
     def show
+      @product_count = Product.count
+      @category_count = Category.count
     end
 
     private
