@@ -117,4 +117,9 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  config.x.basic_auth_username = ENV['BASIC_AUTH_USERNAME']
+  puts "Username: #{config.x.basic_auth_username}"
+  config.x.basic_auth_password = ENV['BASIC_AUTH_PASSWORD']
+  puts "Password: #{config.x.basic_auth_password}"
 end

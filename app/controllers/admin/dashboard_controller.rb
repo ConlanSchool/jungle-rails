@@ -1,11 +1,16 @@
-class Admin::BaseController < ApplicationController
-  before_action :basic_auth
+module Admin
+  class DashboardController < ApplicationController
+    before_action :basic_auth
 
-  private
-
-  def basic_auth
-    authenticate_or_request_with_http_basic do |username, password|
-      username == Rails.configuration.http_authenticate[0] && password == Rails.configuration.http_authenticate[1]
+    def show
     end
+
+    private
+
+    def basic_auth
+      authenticate_or_request_with_http_basic do |username, password|
+        username == Rails.configuration.x.basic_auth_username && password == Rails.configuration.x.basic_auth_password
+      end
+    end    
   end
 end
