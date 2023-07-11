@@ -4,8 +4,10 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:session][:email].downcase)
-
-    if user && user.authenticate(params[:session][:password])
+    authenticated = user && user.authenticate(params[:session][:password])
+    Rails.logger.info "Authenticated: #{authenticated}"
+  
+    if authenticated
       session[:user_id] = user.id
       redirect_to root_path, notice: 'Successfully logged in.'
     else
@@ -13,6 +15,7 @@ class SessionsController < ApplicationController
       render :new
     end
   end
+  
 
   def destroy
     session.delete(:user_id)
